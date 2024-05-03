@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <style>
+    /* Style to apply strikethrough effect to completed todos */
+    .completed {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Todo List</h1>
+
+  <!-- Form for adding new todos -->
+  <form id="todoForm">
+    <label for="newTodo">New Todo:</label>
+    <input type="text" id="newTodo" required>
+    <button type="submit">Add Todo</button>
+  </form>
+
+  <!-- Todo list container -->
+  <ul id="todoList"></ul>
+
+  <script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function () {
+      // Get references to the form and todo list elements
+      const todoForm = document.getElementById('todoForm');
+      const todoList = document.getElementById('todoList');
+
+      // Event listener for form submission
+      todoForm.addEventListener('submit', function (event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+        // Get the value of the new todo input and trim any leading/trailing whitespace
+        const newTodoInput = document.getElementById('newTodo');
+        const todoText = newTodoInput.value.trim();
+
+        // Check if the todo text is not empty
+        if (todoText !== '') {
+          // Call the function to add a new todo item
+          addTodoItem(todoText);
+
+          // Clear the input field after adding the todo
+          newTodoInput.value = '';
+        }
+      });
+
+      // Function to add a new todo item to the list
+      function addTodoItem(todoText) {
+        // Create new elements for the todo item, "Done" button, and "Delete" button
+        const todoItem = document.createElement('li');
+        const doneButton = document.createElement('button');
+        const deleteButton = document.createElement('button');
+
+        // Set the text content for the todo item and buttons
+        todoItem.textContent = todoText;
+        doneButton.textContent = 'Done';
+        deleteButton.textContent = 'Delete';
+
+        // Event listener for the "Done" button to toggle completion status
+        doneButton.addEventListener('click', function () {
+          toggleTodoCompleted(todoItem);
+        });
+
+        // Event listener for the "Delete" button to remove the todo item
+        deleteButton.addEventListener('click', function () {
+          deleteTodoItem(todoItem);
+        });
+
+        // Append the buttons to the todo item
+        todoItem.appendChild(doneButton);
+        todoItem.appendChild(deleteButton);
+
+        // Append the todo item to the todo list
+        todoList.appendChild(todoItem);
+      }
+
+      // Function to toggle the completion status of a todo item
+      function toggleTodoCompleted(todoItem) {
+        todoItem.classList.toggle('completed');
+      }
+
+      // Function to delete a todo item from the list
+      function deleteTodoItem(todoItem) {
+        todoList.removeChild(todoItem);
+      }
+    });
+  </script>
+
+</body>
+</html>
+

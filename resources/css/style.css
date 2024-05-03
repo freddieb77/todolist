@@ -1,0 +1,53 @@
+h1 {
+    text-align: center;
+}
+
+.form-center {
+    display: flex;
+    justify-content: center;
+    height: 10rem;
+    width: 100%;
+}
+
+form {
+    border: .25rem solid;
+    border-radius: .5rem;
+    padding: 2rem;
+}
+
+label {
+    font-size: 1.5rem;
+}
+
+h2 {
+    text-align: center;
+}
+
+.form-list {
+    display: flex;
+    width: 100%;
+    height: auto;
+    border-top: .25rem solid;
+}
+
+ol#list {
+    width: 100%;
+    height: auto;
+    /* Center New list and number for list */
+    text-align: center;
+    list-style-position: inside;
+}
+
+li {
+    margin-bottom: .5rem ;
+}
+    
+
+button {
+    margin-left: .5rem;
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
